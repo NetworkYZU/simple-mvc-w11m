@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>很抱歉你不是本班學生，查無成績</h1>
     </body>
 </html>

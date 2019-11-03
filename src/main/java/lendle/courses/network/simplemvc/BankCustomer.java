@@ -55,16 +55,17 @@ public class BankCustomer {
     public void setBalance(double balance) {
         this.balance = balance;
     }
-    
-    private static Map<String, BankCustomer> db=new HashMap<>();
-    static{
+
+    private static Map<String, BankCustomer> db = new HashMap<>();
+
+    static {
         db.put("customer1", new BankCustomer("customer1", "name1", "name1", 10000));
         db.put("customer2", new BankCustomer("customer2", "name2", "name2", 15000));
         db.put("customer3", new BankCustomer("customer3", "pei3", "liu", -1));
         db.put("customer4", new BankCustomer("customer4", "name4", "name4", 8000));
     }
-    
-    public static BankCustomer getCustomer(String id){
+
+    public static BankCustomer getCustomer(String id) {
         return db.get(id);
     }
 }
