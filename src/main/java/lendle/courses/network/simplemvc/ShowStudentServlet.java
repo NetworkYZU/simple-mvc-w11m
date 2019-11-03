@@ -16,10 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author user
+ * @author 70636
  */
-@WebServlet(name = "ShowBalanceServlet", urlPatterns = {"/ShowBalanceServlet"})
-public class ShowBalanceServlet extends HttpServlet {
+@WebServlet(name = "ShowStudentServlet", urlPatterns = {"/ShowStudentServlet"})
+public class ShowStudentServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,18 +33,31 @@ public class ShowBalanceServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id=request.getParameter("id");
-        BankCustomer customer=BankCustomer.getCustomer(id);
+        Student student=Student.getStudent(id);
         String address=null;
-        if(customer==null){
-        }else if(customer.getBalance()<0){
-            //內轉址
-            request.setAttribute("customer", customer);
-            RequestDispatcher rd=request.getRequestDispatcher("/bank-account/NegativeBalance.jsp");
+//        request.setAttribute("student", student);
+        if(student==null){
+            request.setAttribute("student", student);
+            RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/score-report/UnknownStudent.jsp");
             rd.forward(request, response);
+        }else if(student.getScore()<60){
+            request.setAttribute("student", student);
+            RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/score-report/LowScore.jsp");
+            rd.forward(request, response);
+            //內轉址
+//            request.setAttribute("student", student);
+//            RequestDispatcher rd=request.getRequestDispatcher("/bank-account/NegativeBalance.jsp");
+//            rd.forward(request, response);
             //外轉址
 //            response.sendRedirect("bank-account/NegativeBalance.jsp");
-        }else if(customer.getBalance()>10000){
+        }else if(student.getScore()>70){
+            request.setAttribute("student", student);
+            RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/score-report/HighScore.jsp");
+            rd.forward(request, response);
         }else{
+            request.setAttribute("student", student);
+            RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/score-report/NormalScore.jsp");
+            rd.forward(request, response);
         }
     }
 

@@ -39,7 +39,7 @@ public class ShowScore extends HttpServlet {
         }else if(student.getScore()<60){
             address="/WEB-INF/score-report/LowScore.jsp";
             request.setAttribute("student", student);
-        }else if(student.getScore()>60){
+        }else if(student.getScore()>700){
             address="/WEB-INF/score-report/HighScore.jsp";
             request.setAttribute("student", student);
         }else{
